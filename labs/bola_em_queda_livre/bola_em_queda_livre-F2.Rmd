@@ -23,7 +23,10 @@ Nestes experimentos utilizamos dois tipos de configuração fornecida pelo equip
 
 
 ```{r, echo=FALSE, results='asis', eval=TRUE}
-# Aqui esta todas as funções utilizadas no experimento
+# Aqui esta todas as funções e variaveis utilizadas no experimento
+
+GRAVIDADE <- c(9.8,9.8,9.8,9.8,9.8,9.8)
+
 #############################################################################################
 # Calculando Velocidade Final em cada queda
 calcularVelocidadeFinal <- function(velocidadeInicial, aceleracao, tempoFinal){
@@ -51,12 +54,27 @@ O experimento realizado utilizando o ???????(nome do aparelho) na posição F2, 
 
 ```{r, echo=FALSE, results='asis', eval=TRUE}
 cat("\\newpage")
-# Iniciando Calculos da F2
+
+#############################################################################################
+# Carregando o arquivo com os dados dos Testes
 dadosF2 <- read.csv("bola_em_queda_livre-F2.csv", header = FALSE, col.names=c("tempoInicial","tempoFinal","distanciaInicial","distanciaFinal"))
 
+#############################################################################################
+# Calculando o Tempo e Distância Media e adicionando-os como nova coluna
 dadosF2["tempoMedio"] <- dadosF2$tempoFinal - dadosF2$tempoInicial
 dadosF2["distanciaMedia"] <- dadosF2$distanciaFinal - dadosF2$distanciaInicial
+
+#############################################################################################
+# Tomando a Velocidade Inicial igual a zero em todos os testes
 dadosF2["velocidadeInicial"] <- c(0,0,0,0,0,0)
+
+#############################################################################################
+# Chamando a função que calcula a Velocidade media a partir da Distância Media e do Tempo Medio
+dadosF2["velocidadeFinal"] <- calcularVelocidadeFinal(dadosF2$velocidadeInicial, GRAVIDADE, dadosF2$tempoFinal)
+
+#############################################################################################
+# Chamando a função que calcula a Aceleração media a partir da Velocidade Media e do Tempo Medio
+dadosF2["aceleracaoMedia"] <- calcularAceleracaoMedia(dadosF2$velocidadeFinal, dadosF2$velocidadeInicial, dadosF2$tempoFinal, dadosF2$tempoInicial)
 ```
 # F2
 
@@ -91,10 +109,119 @@ grid(col="red")
 ```{r, echo=FALSE, results='asis', eval=TRUE}
 cat("\\newpage")
 ```
+
 ## Velocidade
 
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+
+```{r, echo=FALSE}
+# Criando o Gráfico
+# dadosF2$velocidadeFinal é o eixo X
+# dadosF2$distanciaMedia é o eixo Y
+# type "o" é o grafico contendo todos os pontos
+# main é o título do grafico, irá aparecer no centro, na parte superior
+# lwd é a espessura da linha do grafico
+# xlab é o título do eixo X
+# ylab é o título do eixo Y
+plot(dadosF2$velocidadeFinal, dadosF2$distanciaMedia, type="o", col="blue", 
+  main="Velocidade X Distância",
+  lwd=3,
+  xlab="Velocidade (metros por segundos)",
+  ylab="Distância (metros)")
+
+# grid cria quadrantes no gráfico, essas linhas da divisoria, terão a cor vermelha
+grid(col="red")
+```
+
+
+bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+```{r, echo=FALSE}
+# Criando o Gráfico
+# dadosF2$tempoMedio é o eixo x
+# dadosF2$velocidadeFinal é o eixo y
+# type "o" é o grafico contendo todos os pontos
+# main é o título do grafico, irá aparecer no centro, na parte superior
+# lwd é a espessura da linha do grafico
+# xlab é o título do eixo X
+# ylab é o título do eixo Y
+plot(dadosF2$tempoMedio, dadosF2$velocidadeFinal, type="o", col="blue", 
+  main="Tempo x Velocidade",
+  lwd=3,
+  xlab="Tempo (segundos)",
+  ylab="Velocidade (metros por segundos)")
+
+# grid cria quadrantes no gráfico, essas linhas da divisoria, terão a cor vermelha
+grid(col="red")
+```
 
 ```{r, echo=FALSE, results='asis', eval=TRUE}
 cat("\\newpage")
 ```
 ## Aceleração
+
+
+mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
+
+```{r, echo=FALSE}
+# Criando o Gráfico
+# dadosF2$distanciaMedia é o eixo X
+# dadosF2$aceleracaoMedia é o eixo Y
+# type "o" é o grafico contendo todos os pontos
+# main é o título do grafico, irá aparecer no centro, na parte superior
+# lwd é a espessura da linha do grafico
+# xlab é o título do eixo X
+# ylab é o título do eixo Y
+plot(dadosF2$distanciaMedia, dadosF2$aceleracaoMedia, type="o", col="blue", 
+  main="Distância x Aceleração",
+  lwd=3,
+  xlab="Distância (metros)",
+  ylab="Aceleração (metros por segundos[quadrado])")
+
+# grid cria quadrantes no gráfico, essas linhas da divisoria, terão a cor vermelha
+grid(col="red")
+```
+
+
+nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+
+```{r, echo=FALSE}
+# Criando o Gráfico
+# dadosF2$velocidadeFinal é o eixo X
+# dadosF2$aceleracaoMedia é o eixo Y
+# type "o" é o grafico contendo todos os pontos
+# main é o título do grafico, irá aparecer no centro, na parte superior
+# lwd é a espessura da linha do grafico
+# xlab é o título do eixo X
+# ylab é o título do eixo Y
+plot(dadosF2$velocidadeFinal, dadosF2$aceleracaoMedia, type="o", col="blue", 
+  main="Velocidade x Aceleração",
+  lwd=3,
+  xlab="Velocidade (metros por segundos)",
+  ylab="Aceleração (metros por segundos[quadrado])")
+
+# grid cria quadrantes no gráfico, essas linhas da divisoria, terão a cor vermelha
+grid(col="red")
+```
+
+
+ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+
+```{r, echo=FALSE}
+# Criando o Gráfico
+# dadosF2$tempoMedio é o eixo X
+# dadosF2$aceleracaoMedia é o eixo Y
+# type "o" é o grafico contendo todos os pontos
+# main é o título do grafico, irá aparecer no centro, na parte superior
+# lwd é a espessura da linha do grafico
+# xlab é o título do eixo X
+# ylab é o título do eixo Y
+plot(dadosF2$tempoMedio, dadosF2$aceleracaoMedia, type="o", col="blue", 
+  main="Tempo x Aceleração",
+  lwd=3,
+  xlab="Tempo (segundos)",
+  ylab="Aceleração (metros por segundos[quadrado])")
+
+# grid cria quadrantes no gráfico, essas linhas da divisoria, terão a cor vermelha
+grid(col="red")
+```
