@@ -1,0 +1,100 @@
+---
+title: "Bola em queda livre"
+author: "Grupo 3"
+date: "15 de dezembro de 2016"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, echo=FALSE, results='asis', eval=TRUE}
+cat("\\newpage")
+```
+# Introdução
+
+Os experimentos e o relatório foi desenvolvido pelo **grupo 3**, formado por: Diego Corrêa, Nathale, Romilson, Ualex. Para a disciplina de *FISA75 - Elementos do eletromagnetismo e circuitos eletricos*. 
+
+# Sobre o experimento
+
+Foi realizado um experimento com uma bola de metal em queda livre. Inicialmente esta bola estava presa em um eletroima e ao desligar do eletroima, esta bola caia em queda livre. Passando por sensores, que dependendo da sua configuração coletava diferentes tipos de dados.
+Nestes experimentos utilizamos dois tipos de configuração fornecida pelo equipamento, **F1** e **F2**.
+
+
+```{r, echo=FALSE, results='asis', eval=TRUE}
+# Aqui esta todas as funções utilizadas no experimento
+#############################################################################################
+# Calculando Velocidade Final em cada queda
+calcularVelocidadeFinal <- function(velocidadeInicial, aceleracao, tempoFinal){
+  velocidadeFinal <- velocidadeInicial + (aceleracao*tempoFinal)
+  return(velocidadeFinal)
+}
+
+#############################################################################################
+# Calculando Aceleração Media em cada queda
+calcularAceleracaoMedia <- function(velocidadeFinal, velocidadeInicial, tempoFinal, tempoInicial){
+  aceleracaoMedia <- (velocidadeFinal - velocidadeInicial)/(tempoFinal - tempoInicial)
+  return(aceleracaoMedia)
+}
+cat("\\newpage")
+```
+# F1
+
+O experimento realizado utilizando o ???????(nome do aparelho) na posição F2, onde o tempo é 
+
+## Dados coletados
+
+## Velocidade
+
+## Aceleração
+
+```{r, echo=FALSE, results='asis', eval=TRUE}
+cat("\\newpage")
+# Iniciando Calculos da F2
+dadosF2 <- read.csv("bola_em_queda_livre-F2.csv", header = FALSE, col.names=c("tempoInicial","tempoFinal","distanciaInicial","distanciaFinal"))
+
+dadosF2["tempoMedio"] <- dadosF2$tempoFinal - dadosF2$tempoInicial
+dadosF2["distanciaMedia"] <- dadosF2$distanciaFinal - dadosF2$distanciaInicial
+dadosF2["velocidadeInicial"] <- c(0,0,0,0,0,0)
+```
+# F2
+
+Esta configuração do aparelho, funcionava da seguinte maneira:
+Ao desligar do eletroima, um contador de tempo é iniciado e a bola entrava em queda livre. O contador é paralizado, assim que a bola passa pelo primeiro sensor. A distância inicial da bola até o sensor era de 8,8 centimetros e a cada novo teste, eram aumentados 10 centimetros, sendo que o numero total de testes foram seis.
+
+## Dados Coletados
+
+Os dados coletados do experimento na configuração **F2** foram o tempo e a distância. Como foram realizados seis testes, teremos 6 pontos no gráfico.
+
+```{r dadosF2, echo=FALSE}
+print(dadosF2)
+# Criando o Gráfico
+# dadosF2$tempoMedio é o eixo X
+# dadosF2$distanciaMedia é o eixo Y
+# type "o" é o grafico contendo todos os pontos
+# main é o título do grafico, irá aparecer no centro, na parte superior
+# lwd é a espessura da linha do grafico
+# xlab é o título do eixo X
+# ylab é o título do eixo Y
+plot(dadosF2$tempoMedio, dadosF2$distanciaMedia, type="o", col="blue", 
+  main="Tempo X Distância",
+  lwd=3,
+  xlab="Tempo (segundos)",
+  ylab="Distância (metros)")
+
+# grid cria quadrantes no gráfico, essas linhas da divisoria, terão a cor vermelha
+grid(col="red")
+```
+
+
+```{r, echo=FALSE, results='asis', eval=TRUE}
+cat("\\newpage")
+```
+## Velocidade
+
+
+```{r, echo=FALSE, results='asis', eval=TRUE}
+cat("\\newpage")
+```
+## Aceleração
