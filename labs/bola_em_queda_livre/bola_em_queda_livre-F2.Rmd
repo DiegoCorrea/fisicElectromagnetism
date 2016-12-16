@@ -44,7 +44,7 @@ cat("\\newpage")
 ```
 # F1
 
-O experimento realizado utilizando o ???????(nome do aparelho) na posição F2, onde o tempo é 
+O experimento realizado utilizando o ???????(nome do aparelho) na posição F1, onde o tempo é 
 
 ## Dados coletados
 
@@ -69,11 +69,11 @@ dadosF2["distanciaMedia"] <- dadosF2$distanciaFinal - dadosF2$distanciaInicial
 dadosF2["velocidadeInicial"] <- c(0,0,0,0,0,0)
 
 #############################################################################################
-# Chamando a função que calcula a Velocidade media a partir da Distância Media e do Tempo Medio
+# Chamando a função que calcula a Velocidade Final
 dadosF2["velocidadeFinal"] <- calcularVelocidadeFinal(dadosF2$velocidadeInicial, GRAVIDADE, dadosF2$tempoFinal)
 
 #############################################################################################
-# Chamando a função que calcula a Aceleração media a partir da Velocidade Media e do Tempo Medio
+# Chamando a função que calcula a Aceleração media
 dadosF2["aceleracaoMedia"] <- calcularAceleracaoMedia(dadosF2$velocidadeFinal, dadosF2$velocidadeInicial, dadosF2$tempoFinal, dadosF2$tempoInicial)
 ```
 # F2
@@ -112,8 +112,10 @@ cat("\\newpage")
 
 ## Velocidade
 
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-
+A partir do dados coletados nos testes, podemos calcular a Velocidade Final da bola. Esta Velocidade Final, é a velocidade no momento em que a bola passa pelo sensor.
+A Velocidade Final é: Velocidade Inicial menos a aceleração vezes o tempo final. Vf = Vi - A*T.
+Assim para cada caso de teste da F2 obtemos um ponto nos gráficos a seguir.  
+  
 ```{r, echo=FALSE}
 # Criando o Gráfico
 # dadosF2$velocidadeFinal é o eixo X
