@@ -1,7 +1,7 @@
 ---
-title: "Bola em queda livre"
+title: "Primeiro relatório dos experimentos"
 author: "Grupo 3"
-date: "16 de dezembro de 2016"
+date: "21 de dezembro de 2016"
 output: pdf_document
 ---
 
@@ -14,16 +14,16 @@ cat("\\newpage")
 ```
 # Introdução
 
-Os experimentos e o relatório foi desenvolvido pelo **grupo 3**, formado por: Diego Corrêa, Nathale Silva, Romilson Santana, Uálex Silva. Para a disciplina de *FISA75 - Elementos do eletromagnetismo e de circuitos elétricos*. 
+Os experimentos e o relatório foi desenvolvido pelo **grupo 3**, formado por: Diego Corrêa, Nathale Silva, Romilson Santana, Uálex Silva. Para a disciplina de *FISA75 - Elementos do eletromagnetismo e de circuitos elétricos*. Utilizando da linguagem de programação R e o módulo Knitr.
 
-# Sobre o experimento
+# Sobre os experimentos
 
-Foi realizado um experimento com uma bola de metal em queda livre. Inicialmente esta bola estava presa em um eletroima e ao desligar do eletroima, esta bola caia em queda livre. Passando por sensores, que dependendo da sua configuração coletava diferentes tipos de dados.
-Nestes experimentos utilizamos dois tipos de configuração fornecida pelo equipamento, **F1** e **F2**.
+Foram realizados *quatro experimentos*.  
+Nos *experimentos* *1* e *2* utilizamos de uma bola de metal em queda livre. Inicialmente esta bola estava presa em um eletroima e ao desligar do eletroima, esta bola caia em queda livre. Passando por sensores, que dependendo da sua configuração coletava diferentes tipos de dados. Nestes experimentos utilizamos dois tipos de configuração fornecida pelo equipamento, no *experimento 1* a configuração **F2** e no *experimento 2* a configuração **F1**.  
+Nos *experimentos* *3* e *4* utilizamos de pêndulos. Ao balançar do pêndulo, contávamos a sua frequência de oscilação, ao chegar em 10 oscilações parávamos o cronometro e então coletávamos os dados que tinhamos.
 
 
 ```{r, echo=FALSE, results='asis', eval=TRUE}
-cat("\\newpage")
 # Aqui esta todas as funções e variaveis utilizadas no experimento
 
 GRAVIDADE <- c(9.8,9.8,9.8,9.8,9.8,9.8)
@@ -42,15 +42,6 @@ calcularAceleracaoMedia <- function(velocidadeFinal, velocidadeInicial, tempoFin
   return(aceleracaoMedia)
 }
 ```
-# F1
-
-O experimento realizado utilizando o ???????(nome do aparelho) na posição F1, onde o tempo é 
-
-## Dados coletados
-
-## Velocidade
-
-## Aceleração
 
 ```{r, echo=FALSE, results='asis', eval=TRUE}
 cat("\\newpage")
@@ -77,10 +68,10 @@ dadosF2["velocidadeFinal"] <- calcularVelocidadeFinal(dadosF2$velocidadeInicial,
 dadosF2["aceleracaoMedia"] <- calcularAceleracaoMedia(dadosF2$velocidadeFinal, dadosF2$velocidadeInicial, dadosF2$tempoFinal, dadosF2$tempoInicial)
 ```
 
-# F2
+# Experimento 1- Bola em queda livre na F2
 
 Esta configuração do aparelho, funcionava da seguinte maneira:
-Ao desligar do eletroima, um contador de tempo é iniciado e a bola entrava em queda livre. O contador é paralizado, assim que a bola passa pelo primeiro sensor. A distância inicial da bola até o sensor era de 8,8 centimetros que são 0,088 metros e a cada novo teste, eram aumentados 10 centimetros, sendo que o numero total de testes foram seis.
+Ao desligar do eletroima, um contador de tempo é iniciado e a bola entrava em queda livre. O contador é paralizado assim que a bola passa pelo primeiro sensor. A distância inicial da bola até o sensor era de 8,8 centimetros que são 0,088 metros e a cada novo teste, eram aumentados 10 centimetros, sendo que o numero total de testes foram seis.
 
 ## Dados Coletados
 
@@ -117,7 +108,7 @@ print(dadosF2$distanciaFinal)
 # xlab é o título do eixo X
 # ylab é o título do eixo Y
 plot(dadosF2$tempoMedio, dadosF2$distanciaMedia, type="o", col="blue", 
-  main="Tempo X Distância",
+  main="Distância X Tempo",
   lwd=3,
   xlab="Tempo (segundos)",
   ylab="Distância (metros)")
@@ -159,7 +150,7 @@ Assim para cada caso de teste da F2, obtemos um ponto nos gráficos a seguir.
 # xlab é o título do eixo X
 # ylab é o título do eixo Y
 plot(dadosF2$velocidadeFinal, dadosF2$distanciaMedia, type="o", col="blue", 
-  main="Velocidade X Distância",
+  main="Distância X Velocidade",
   lwd=3,
   xlab="Velocidade (metros por segundos)",
   ylab="Distância (metros)")
@@ -180,7 +171,7 @@ grid(col="red")
 # xlab é o título do eixo X
 # ylab é o título do eixo Y
 plot(dadosF2$tempoMedio, dadosF2$velocidadeFinal, type="o", col="blue", 
-  main="Tempo x Velocidade",
+  main="Velocidade X Tempo",
   lwd=3,
   xlab="Tempo (segundos)",
   ylab="Velocidade (metros por segundos)")
@@ -215,7 +206,7 @@ Assim para cada caso de teste da F2, obtemos um ponto nos gráficos a seguir.
 # xlab é o título do eixo X
 # ylab é o título do eixo Y
 plot(dadosF2$distanciaMedia, dadosF2$aceleracaoMedia, type="o", col="blue", 
-  main="Distância x Aceleração",
+  main="Aceleração X Distância",
   lwd=3,
   xlab="Distância (metros)",
   ylab="Aceleração (metros por segundos[quadrado])")
@@ -236,7 +227,7 @@ grid(col="red")
 # xlab é o título do eixo X
 # ylab é o título do eixo Y
 plot(dadosF2$velocidadeFinal, dadosF2$aceleracaoMedia, type="o", col="blue", 
-  main="Velocidade x Aceleração",
+  main="Aceleração X Velocidade",
   lwd=3,
   xlab="Velocidade (metros por segundos)",
   ylab="Aceleração (metros por segundos[quadrado])")
@@ -257,7 +248,7 @@ grid(col="red")
 # xlab é o título do eixo X
 # ylab é o título do eixo Y
 plot(dadosF2$tempoMedio, dadosF2$aceleracaoMedia, type="o", col="blue", 
-  main="Tempo x Aceleração",
+  main="Aceleração X Tempo",
   lwd=3,
   xlab="Tempo (segundos)",
   ylab="Aceleração (metros por segundos[quadrado])")
@@ -265,3 +256,13 @@ plot(dadosF2$tempoMedio, dadosF2$aceleracaoMedia, type="o", col="blue",
 # grid cria quadrantes no gráfico, essas linhas da divisoria, terão a cor vermelha
 grid(col="red")
 ```
+
+# Experimento 2- Bola em queda livre na F1
+
+O experimento realizado utilizando o ???????(nome do aparelho) na posição F1, onde o tempo é 
+
+## Dados coletados
+
+## Velocidade
+
+## Aceleração
