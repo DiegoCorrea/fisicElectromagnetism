@@ -14,19 +14,19 @@ cat("\\newpage")
 ```
 # Introdução
 
-Os experimentos e o relatório foi desenvolvido pelo **grupo 3**, formado por: Diego Corrêa, Nathale Silva, Romilson Santana, Uálex Silva. Para a disciplina de *FISA75 - Elementos do eletromagnetismo e de circuitos elétricos*. Utilizando da linguagem de programação R e o módulo Knitr.
+Os experimentos e o relatório foi desenvolvido pelo **grupo 3**, formado por: Diego Corrêa, Nathale Silva, Romilson Santana, Uálex Silva. Para a disciplina de *FISA75 - Elementos do eletromagnetismo e de circuitos elétricos*. Utilizando da linguagem de programação R e o pacote Knitr.  
 
 # Sobre os experimentos
 
 Foram realizados *quatro experimentos*.  
 Nos *experimentos* *1* e *2* utilizamos de uma bola de metal em queda livre. Inicialmente esta bola estava presa em um eletroima e ao desligar do eletroima, esta bola caia em queda livre. Passando por sensores, que dependendo da sua configuração coletava diferentes tipos de dados. Nestes experimentos utilizamos dois tipos de configuração fornecida pelo equipamento, no *experimento 1* a configuração **F2** e no *experimento 2* a configuração **F1**.  
-Nos *experimentos* *3* e *4* utilizamos de pêndulos. Ao balançar do pêndulo, contávamos a sua frequência de oscilação, ao chegar em 10 oscilações parávamos o cronometro e então coletávamos os dados que tinhamos.
+Nos *experimentos* *3* e *4* utilizamos de pêndulos. Ao balançar do pêndulo, contávamos a sua frequência de oscilação, ao chegar em 10 oscilações parávamos o cronometro e então coletávamos os dados que tinhamos.  
 
 
 ```{r, echo=FALSE, results='asis', eval=TRUE}
 # Aqui esta todas as funções e variaveis utilizadas no experimento
 
-GRAVIDADE <- c(9.8,9.8,9.8,9.8,9.8,9.8)
+GRAVIDADE <- 9.8
 
 #############################################################################################
 # Calculando Velocidade Final em cada queda
@@ -40,6 +40,12 @@ calcularVelocidadeFinal <- function(velocidadeInicial, aceleracao, tempoFinal){
 calcularAceleracaoMedia <- function(velocidadeFinal, velocidadeInicial, tempoFinal, tempoInicial){
   aceleracaoMedia <- (velocidadeFinal - velocidadeInicial)/(tempoFinal - tempoInicial)
   return(aceleracaoMedia)
+}
+
+#############################################################################################
+# Calculando a Velocidade Inicial a partir da Gravidade e da Distância percorrida
+calcularVelocidadeInicial <- function(gravidade, distancia){
+  return(sqrt(2*GRAVIDADE*distancia))
 }
 ```
 
@@ -71,28 +77,28 @@ dadosF2["aceleracaoMedia"] <- calcularAceleracaoMedia(dadosF2$velocidadeFinal, d
 # Experimento 1- Bola em queda livre na F2
 
 Esta configuração do aparelho, funcionava da seguinte maneira:
-Ao desligar do eletroima, um contador de tempo é iniciado e a bola entrava em queda livre. O contador é paralizado assim que a bola passa pelo primeiro sensor. A distância inicial da bola até o sensor era de 8,8 centimetros que são 0,088 metros e a cada novo teste, eram aumentados 10 centimetros, sendo que o numero total de testes foram seis.
+Ao desligar do eletroima, um contador de tempo é iniciado e a bola entrava em queda livre. O contador é paralizado assim que a bola passa pelo sensor. A distância inicial da bola até o sensor era de 8,8 centimetros que são 0,088 metros e a cada novo teste, eram aumentados 10 centimetros, sendo que o numero total de testes foram *seis*.
 
 ## Dados Coletados
 
 Os dados coletados do experimento na configuração **F2** foram o tempo e a distância. Como foram realizados *seis* testes, teremos assim *seis* pontos nos gráficos.
 
-Tempo Inicial
+**Tempo Inicial**
 ```{r, echo=FALSE}
 print(dadosF2$tempoInicial)
 ```
 
-Tempo Final
+**Tempo Final**
 ```{r, echo=FALSE}
 print(dadosF2$tempoFinal)
 ```
 
-Distância Inicial
+**Distância Inicial**
 ```{r, echo=FALSE}
 print(dadosF2$distanciaInicial)
 ```
 
-Distância Final
+**Distância Final**
 ```{r, echo=FALSE}
 print(dadosF2$distanciaFinal)
 ```
@@ -124,21 +130,21 @@ cat("\\newpage")
 
 ## Velocidade
 
-A partir do dados coletados nos testes, podemos calcular a Velocidade Final da bola. Esta Velocidade Final, é a velocidade no momento em que a bola passa pelo sensor.
+A partir dos dados coletados nos testes, podemos calcular a Velocidade Final da bola. Esta Velocidade Final, é a velocidade no momento em que a bola passa pelo sensor.
 A Velocidade final é: Velocidade inicial mais a Aceleração vezes o Tempo final. Vf = Vi + A*Tf.  
   
-Velocidade Inicial
+**Velocidade Inicial**
 ```{r, echo=FALSE}
 print(dadosF2$velocidadeInicial)
 ```
 
-Velocidade Final
+**Velocidade Final**
 ```{r, echo=FALSE}
 print(dadosF2$velocidadeFinal)
 ```
+  
 Assim para cada caso de teste da F2, obtemos um ponto nos gráficos a seguir.  
   
-
 ```{r, echo=FALSE}
 #############################################################################################
 # Criando o Gráfico
@@ -185,10 +191,10 @@ cat("\\newpage")
 ```
 ## Aceleração
 
-A partir do dados coletados nos testes, podemos calcular a Aceleração média da bola. Esta Aceleração média é constante, pois aqui a bola só sofre influência da força da gravidade.
+A partir dos dados coletados nos testes, podemos calcular a Aceleração média da bola. Esta Aceleração média é constante, pois aqui a bola só sofre influência da força da gravidade.
 A Aceleração média é: Velocidade final menos Velocidade inicial dividido pelo Tempo final menos o Tempo inicial. Am = (Vf - Vi)/(Tf - Ti)
   
-Aceleração Média
+**Aceleração Média**
 ```{r, echo=FALSE}
 print(dadosF2$aceleracaoMedia)
 ```
@@ -257,12 +263,249 @@ plot(dadosF2$tempoMedio, dadosF2$aceleracaoMedia, type="o", col="blue",
 grid(col="red")
 ```
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```{r, echo=FALSE, results='asis', eval=TRUE}
+cat("\\newpage")
+
+#############################################################################################
+# Carregando o arquivo com os dados dos Testes
+dadosF1 <- read.csv("bola_em_queda_livre-F1.csv", header = FALSE, col.names=c("tempoInicial","tempoFinal","distanciaInicial","distanciaFinal"))
+
+#############################################################################################
+# Calculando o Tempo e Distância Media e adicionando-os como nova coluna
+dadosF1["tempoMedio"] <- dadosF1$tempoFinal - dadosF1$tempoInicial
+dadosF1["distanciaMedia"] <- dadosF1$distanciaFinal - dadosF1$distanciaInicial
+
+#############################################################################################
+# Tomando a Velocidade Inicial é calculada para cada caso de teste
+dadosF1["velocidadeInicial"] <- calcularVelocidadeInicial(GRAVIDADE, dadosF1$distanciaInicial)
+
+#############################################################################################
+# Chamando a função que calcula a Velocidade Final
+dadosF1["velocidadeFinal"] <- calcularVelocidadeFinal(dadosF1$velocidadeInicial, GRAVIDADE, dadosF1$tempoFinal)
+
+#############################################################################################
+# Chamando a função que calcula a Aceleração media
+dadosF1["aceleracaoMedia"] <- calcularAceleracaoMedia(dadosF1$velocidadeFinal, dadosF1$velocidadeInicial, dadosF1$tempoFinal, dadosF1$tempoInicial)
+```
+
 # Experimento 2- Bola em queda livre na F1
 
-O experimento realizado utilizando o ???????(nome do aparelho) na posição F1, onde o tempo é 
+Esta configuração do aparelho, funcionava da seguinte maneira:
+Ao desligar do eletroima, a bola entrava em queda livre. Dois sensores são utilizados nesse experimento, ao passar da bola no primeiro sensor, o cronometro é inicial e só é desligado ao passar pelo segundo sensor. Repetimos esse experimento em *cinco* testes. O primeiro sensor sempre fixo em 8,8 centimetro ou 0,088 metros e o segundo sensor variando mais 10 centimetros a cada teste.
 
-## Dados coletados
+## Dados Coletados
+
+Os dados coletados do experimento na configuração **F1** foram o tempo e a distância. Como foram realizados *cinco* testes, teremos assim *cinco* pontos nos gráficos.
+
+**Tempo Inicial**
+```{r, echo=FALSE}
+print(dadosF1$tempoInicial)
+```
+
+**Tempo Final**
+```{r, echo=FALSE}
+print(dadosF1$tempoFinal)
+```
+
+**Distância Inicial**
+```{r, echo=FALSE}
+print(dadosF1$distanciaInicial)
+```
+
+**Distância Final**
+```{r, echo=FALSE}
+print(dadosF1$distanciaFinal)
+```
+
+```{r dadosF1, echo=FALSE}
+#############################################################################################
+# Criando o Gráfico
+# dadosF1$tempoMedio é o eixo X
+# dadosF1$distanciaMedia é o eixo Y
+# type "o" é o grafico contendo todos os pontos
+# main é o título do grafico, irá aparecer no centro, na parte superior
+# lwd é a espessura da linha do grafico
+# xlab é o título do eixo X
+# ylab é o título do eixo Y
+plot(dadosF1$tempoMedio, dadosF1$distanciaMedia, type="o", col="blue", 
+  main="Distância X Tempo",
+  lwd=3,
+  xlab="Tempo (segundos)",
+  ylab="Distância (metros)")
+
+# grid cria quadrantes no gráfico, essas linhas da divisoria, terão a cor vermelha
+grid(col="red")
+```
+
+
+```{r, echo=FALSE, results='asis', eval=TRUE}
+cat("\\newpage")
+```
 
 ## Velocidade
 
+A partir dos dados coletados nos testes, podemos calcular a Velocidade Inicial e a Velocidade Final.  
+A Velocidade inicial é: Raiz de dois vezes a Gravidade vezes a Distância. Vi = sqrt(2 * (G * H)). Esta Velocidade é no momento em que a bola passa pelo primeiro sensor.  
+A Velocidade final é: Velocidade inicial mais a Aceleração vezes o Tempo final. Vf = Vi + A*Tf. Esta Velocidade é no momento em que a bola passa pelo segundo sensor.
+  
+**Velocidade Inicial**
+```{r, echo=FALSE}
+print(dadosF1$velocidadeInicial)
+```
+
+**Velocidade Final**
+```{r, echo=FALSE}
+print(dadosF1$velocidadeFinal)
+```
+
+Assim para cada caso de teste da F1, obtemos um ponto nos gráficos a seguir.  
+
+```{r, echo=FALSE}
+#############################################################################################
+# Criando o Gráfico
+# dadosF1$velocidadeFinal é o eixo X
+# dadosF1$distanciaMedia é o eixo Y
+# type "o" é o grafico contendo todos os pontos
+# main é o título do grafico, irá aparecer no centro, na parte superior
+# lwd é a espessura da linha do grafico
+# xlab é o título do eixo X
+# ylab é o título do eixo Y
+plot(dadosF1$velocidadeFinal, dadosF1$distanciaMedia, type="o", col="blue", 
+  main="Distância X Velocidade",
+  lwd=3,
+  xlab="Velocidade (metros por segundos)",
+  ylab="Distância (metros)")
+
+# grid cria quadrantes no gráfico, essas linhas da divisoria, terão a cor vermelha
+grid(col="red")
+```
+
+
+```{r, echo=FALSE}
+#############################################################################################
+# Criando o Gráfico
+# dadosF1$tempoMedio é o eixo x
+# dadosF1$velocidadeFinal é o eixo y
+# type "o" é o grafico contendo todos os pontos
+# main é o título do grafico, irá aparecer no centro, na parte superior
+# lwd é a espessura da linha do grafico
+# xlab é o título do eixo X
+# ylab é o título do eixo Y
+plot(dadosF1$tempoMedio, dadosF1$velocidadeFinal, type="o", col="blue", 
+  main="Velocidade X Tempo",
+  lwd=3,
+  xlab="Tempo (segundos)",
+  ylab="Velocidade (metros por segundos)")
+
+# grid cria quadrantes no gráfico, essas linhas da divisoria, terão a cor vermelha
+grid(col="red")
+```
+
+```{r, echo=FALSE, results='asis', eval=TRUE}
+cat("\\newpage")
+```
 ## Aceleração
+
+A partir dos dados coletados nos testes, podemos calcular a Aceleração média da bola. Esta Aceleração média é constante, pois aqui a bola só sofre influência da força da gravidade.
+A Aceleração média é: Velocidade final menos Velocidade inicial dividido pelo Tempo final menos o Tempo inicial. Am = (Vf - Vi)/(Tf - Ti)
+  
+**Aceleração Média**
+```{r, echo=FALSE}
+print(dadosF1$aceleracaoMedia)
+```
+
+Assim para cada caso de teste da F1, obtemos um ponto nos gráficos a seguir.  
+
+```{r, echo=FALSE}
+#############################################################################################
+# Criando o Gráfico
+# dadosF1$distanciaMedia é o eixo X
+# dadosF1$aceleracaoMedia é o eixo Y
+# type "o" é o grafico contendo todos os pontos
+# main é o título do grafico, irá aparecer no centro, na parte superior
+# lwd é a espessura da linha do grafico
+# xlab é o título do eixo X
+# ylab é o título do eixo Y
+plot(dadosF1$distanciaMedia, dadosF1$aceleracaoMedia, type="o", col="blue", 
+  main="Aceleração X Distância",
+  lwd=3,
+  xlab="Distância (metros)",
+  ylab="Aceleração (metros por segundos[quadrado])")
+
+# grid cria quadrantes no gráfico, essas linhas da divisoria, terão a cor vermelha
+grid(col="red")
+```
+
+
+```{r, echo=FALSE}
+#############################################################################################
+# Criando o Gráfico
+# dadosF1$velocidadeFinal é o eixo X
+# dadosF1$aceleracaoMedia é o eixo Y
+# type "o" é o grafico contendo todos os pontos
+# main é o título do grafico, irá aparecer no centro, na parte superior
+# lwd é a espessura da linha do grafico
+# xlab é o título do eixo X
+# ylab é o título do eixo Y
+plot(dadosF1$velocidadeFinal, dadosF1$aceleracaoMedia, type="o", col="blue", 
+  main="Aceleração X Velocidade",
+  lwd=3,
+  xlab="Velocidade (metros por segundos)",
+  ylab="Aceleração (metros por segundos[quadrado])")
+
+# grid cria quadrantes no gráfico, essas linhas da divisoria, terão a cor vermelha
+grid(col="red")
+```
+
+
+```{r, echo=FALSE}
+#############################################################################################
+# Criando o Gráfico
+# dadosF1$tempoMedio é o eixo X
+# dadosF1$aceleracaoMedia é o eixo Y
+# type "o" é o grafico contendo todos os pontos
+# main é o título do grafico, irá aparecer no centro, na parte superior
+# lwd é a espessura da linha do grafico
+# xlab é o título do eixo X
+# ylab é o título do eixo Y
+plot(dadosF1$tempoMedio, dadosF1$aceleracaoMedia, type="o", col="blue", 
+  main="Aceleração X Tempo",
+  lwd=3,
+  xlab="Tempo (segundos)",
+  ylab="Aceleração (metros por segundos[quadrado])")
+
+# grid cria quadrantes no gráfico, essas linhas da divisoria, terão a cor vermelha
+grid(col="red")
+```
