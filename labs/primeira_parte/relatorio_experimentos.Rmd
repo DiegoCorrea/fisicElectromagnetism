@@ -263,7 +263,27 @@ plot(dadosF2$tempoMedio, dadosF2$aceleracaoMedia, type="o", col="blue",
 grid(col="red")
 ```
 
+```{r, echo=FALSE}
+## x recebe tempo
+x<-dadosF2$tempoFinal
+## Y recebe distancia
+y<-dadosF2$distanciaFinal
 
+## linearizando o gráfico de F2 da Distancia X Tempo
+plot(dadosF2$tempoFinal,dadosF2$distanciaFinal,log="xy",type='o', main="Gráfico Linearizado de F2/ DistânciaXtempo")
+grid(col="red")
+
+##função para achar o coeficiente angular do gráfico Distância X Tempo de F2
+line<- function(x,y){
+  angular<-(log(y[5],base=10))-(log(y[4],base=10))
+  b<- (log(x[5],base=10))-(log(x[4],base=10))
+  coeficiente<- angular/b
+  return (coeficiente)
+}
+
+##Coeficiente angular
+print(line(x,y))
+```
 
 
 
