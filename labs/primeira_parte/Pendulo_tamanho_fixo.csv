@@ -1,0 +1,33 @@
+
+pendulo2 <- read.table("C:/Users/ualex/Desktop/8º Semestre/Física/Experimento2/pendulo2.txt", header=TRUE, sep="\t", na.strings="NA", dec=",", strip.white=TRUE)
+
+somatempo<-0
+
+Main<- function(tempo){
+  ## Calcula frequencia = Numero de oscilacoes dividido pelo tempo  
+  f<-10/tempo
+  cat("Frequencia :",f,"\n")
+  
+  ##Calcula o Periodo = 1 dividido pela frequencia 
+  periodo<-1/f
+  cat("Periodo :",periodo,"\n")
+  
+  ##Calcula o comprimento L = T²*g/4*pi²
+  L<-(((periodo)^2)*9.8)/(4*(pi)^2)
+  
+  cat("comprimento L:",L,"\n")
+  
+}
+
+## Loop para calcular a soma total do tempo dos 10 testes realizado   
+  for (x in 1:10){
+    somatempo <- (somatempo+(pendulo2[x,2]))
+}
+
+## Calcula tempo medio dos 10 testes realizados
+tempomedio<-somatempo/10
+
+Main(tempomedio)
+
+
+
