@@ -765,3 +765,35 @@ cat("\\newpage")
 # Experimento 4 - Pêndulo tamanho fixo
 
 O experimento do pêndulo fixo foi realizado com um fio de barbante de comprimento L desconhecido a ser calculado, fixado na sua extremidade superior a um ponto que permite sua livre oscilação e na extremidade inferior ficou preso a uma esfera de metal de massa m, a esfera de metal foi descolada 10 cm da posição inicial e observou-se o tempo (t) para 10 oscilações. Para esse experimento foram realizados 10 testes.
+
+```{r, echo=FALSE, results='asis', eval=TRUE}
+pendulo2 <- read.csv(file = "pendulo_tamanho_fixo.csv", header=TRUE, sep=",")
+
+somatempo<-0
+
+Main<- function(tempo){
+  ## Calcula frequencia = Numero de oscilacoes dividido pelo tempo  
+  f<-10/tempo
+  cat("Frequencia :",f,"\n")
+  
+  ##Calcula o Periodo = 1 dividido pela frequencia 
+  periodo<-1/f
+  cat("Periodo :",periodo,"\n")
+  
+  ##Calcula o comprimento L = T²*g/4*pi²
+  L<-(((periodo)^2)*9.8)/(4*(pi)^2)
+  
+  cat("comprimento L:",L,"\n")
+  
+}
+
+## Loop para calcular a soma total do tempo dos 10 testes realizado   
+  for (x in 1:10){
+    somatempo <- (somatempo+(pendulo2[x,2]))
+}
+
+## Calcula tempo medio dos 10 testes realizados
+tempomedio<-somatempo/10
+
+Main(tempomedio)
+```
