@@ -760,6 +760,27 @@ printGraficoAceleracao()
 ```
 
 
+```{r, echo=FALSE}
+periodo<-loopPeriodo()
+##valores da distancia em metros na  variavel local
+distancia<- c(0.2,0.4,0.6,0.8,1.0)
+
+x<-distancia
+y<-periodo
+## Gráfico linearizado
+plot(distancia,periodo, log="xy", type='o', main="Gráfico linearizado",lwd=3, xlab="Distancia", ylab="Periodo")
+grid(col="red")
+
+## função para achar o coeficiente angular
+line2<- function(x,y){
+  a<-(log(y[5],base=10))-(log(y[4],base=10))
+  b<-(log(x[5],base=10))-(log(x[4],base=10))
+  coeficiente2<- a/b
+}
+
+##coeficiente angular do pêndulo variado
+print(line2(x,y))
+```
 
 
 
