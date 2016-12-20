@@ -627,7 +627,7 @@ loopPeriodo <- function(){
 graficoPeriodo <- function(){
   distancia <- c()
   for(x in 1:5){
-    distancia[x] <- data[x,2]
+    distancia[x] <- data[x,1]
   }
   Período <- loopPeriodo()
   return(plot(distancia, Período, type = 'b', main = "Período x Distância", lwd=3, xlab="Distância", ylab="Período"))
