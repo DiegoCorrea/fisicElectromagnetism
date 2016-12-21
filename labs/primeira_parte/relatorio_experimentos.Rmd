@@ -114,7 +114,7 @@ print(dadosF2$distanciaFinal)
 # xlab é o título do eixo X
 # ylab é o título do eixo Y
 plot(dadosF2$tempoMedio, dadosF2$distanciaMedia, type="o", col="blue", 
-  main="Distância X Tempo",
+  main="Distância X Tempo \n F2",
   lwd=3,
   xlab="Tempo (segundos)",
   ylab="Distância (metros)")
@@ -156,7 +156,7 @@ Assim para cada caso de teste da F2, obtemos um ponto nos gráficos a seguir.
 # xlab é o título do eixo X
 # ylab é o título do eixo Y
 plot(dadosF2$velocidadeFinal, dadosF2$distanciaMedia, type="o", col="blue", 
-  main="Distância X Velocidade",
+  main="Distância X Velocidade \n F2",
   lwd=3,
   xlab="Velocidade (metros por segundos)",
   ylab="Distância (metros)")
@@ -177,7 +177,7 @@ grid(col="red")
 # xlab é o título do eixo X
 # ylab é o título do eixo Y
 plot(dadosF2$tempoMedio, dadosF2$velocidadeFinal, type="o", col="blue", 
-  main="Velocidade X Tempo",
+  main="Velocidade X Tempo  \n F2",
   lwd=3,
   xlab="Tempo (segundos)",
   ylab="Velocidade (metros por segundos)")
@@ -212,7 +212,7 @@ Assim para cada caso de teste da F2, obtemos um ponto nos gráficos a seguir.
 # xlab é o título do eixo X
 # ylab é o título do eixo Y
 plot(dadosF2$distanciaMedia, dadosF2$aceleracaoMedia, type="o", col="blue", 
-  main="Aceleração X Distância",
+  main="Aceleração X Distância  \n F2",
   lwd=3,
   xlab="Distância (metros)",
   ylab="Aceleração (metros por segundos[quadrado])")
@@ -233,7 +233,7 @@ grid(col="red")
 # xlab é o título do eixo X
 # ylab é o título do eixo Y
 plot(dadosF2$velocidadeFinal, dadosF2$aceleracaoMedia, type="o", col="blue", 
-  main="Aceleração X Velocidade",
+  main="Aceleração X Velocidade \n F2",
   lwd=3,
   xlab="Velocidade (metros por segundos)",
   ylab="Aceleração (metros por segundos[quadrado])")
@@ -254,7 +254,7 @@ grid(col="red")
 # xlab é o título do eixo X
 # ylab é o título do eixo Y
 plot(dadosF2$tempoMedio, dadosF2$aceleracaoMedia, type="o", col="blue", 
-  main="Aceleração X Tempo",
+  main="Aceleração X Tempo \n F2",
   lwd=3,
   xlab="Tempo (segundos)",
   ylab="Aceleração (metros por segundos[quadrado])")
@@ -270,7 +270,7 @@ x<-dadosF2$tempoFinal
 y<-dadosF2$distanciaFinal
 
 ## linearizando o gráfico de F2 da Distancia X Tempo
-plot(dadosF2$tempoFinal,dadosF2$distanciaFinal,log="xy",type='o', main="Gráfico Linearizado de F2/ DistânciaXtempo")
+plot(dadosF2$tempoFinal,dadosF2$distanciaFinal,log="xy",type='o', main="Gráfico Linearizado de F2", xlab="Tempo(segundos)", ylab="Distância(metros)", lwd=3, col="blue")
 grid(col="red")
 
 ##função para achar o coeficiente angular do gráfico Distância X Tempo de F2
@@ -281,11 +281,15 @@ line<- function(x,y){
   return (coeficiente)
 }
 
+
+```
+
+## Coeficiente Ângular  
+  
+```{r, echo=FALSE}
 ##Coeficiente angular
 print(line(x,y))
 ```
-
-
 
 
 
@@ -380,7 +384,7 @@ print(dadosF1$distanciaFinal)
 # xlab é o título do eixo X
 # ylab é o título do eixo Y
 plot(dadosF1$tempoMedio, dadosF1$distanciaMedia, type="o", col="blue", 
-  main="Distância X Tempo",
+  main="Distância X Tempo\n F1",
   lwd=3,
   xlab="Tempo (segundos)",
   ylab="Distância (metros)")
@@ -423,7 +427,7 @@ Assim para cada caso de teste da F1, obtemos um ponto nos gráficos a seguir.
 # xlab é o título do eixo X
 # ylab é o título do eixo Y
 plot(dadosF1$velocidadeFinal, dadosF1$distanciaMedia, type="o", col="blue", 
-  main="Distância X Velocidade",
+  main="Distância X Velocidade\n F1",
   lwd=3,
   xlab="Velocidade (metros por segundos)",
   ylab="Distância (metros)")
@@ -444,7 +448,7 @@ grid(col="red")
 # xlab é o título do eixo X
 # ylab é o título do eixo Y
 plot(dadosF1$tempoMedio, dadosF1$velocidadeFinal, type="o", col="blue", 
-  main="Velocidade X Tempo",
+  main="Velocidade X Tempo\n F1",
   lwd=3,
   xlab="Tempo (segundos)",
   ylab="Velocidade (metros por segundos)")
@@ -479,7 +483,7 @@ Assim para cada caso de teste da F1, obtemos um ponto nos gráficos a seguir.
 # xlab é o título do eixo X
 # ylab é o título do eixo Y
 plot(dadosF1$distanciaMedia, dadosF1$aceleracaoMedia, type="o", col="blue", 
-  main="Aceleração X Distância",
+  main="Aceleração X Distância\n F1",
   lwd=3,
   xlab="Distância (metros)",
   ylab="Aceleração (metros por segundos[quadrado])")
@@ -500,7 +504,7 @@ grid(col="red")
 # xlab é o título do eixo X
 # ylab é o título do eixo Y
 plot(dadosF1$velocidadeFinal, dadosF1$aceleracaoMedia, type="o", col="blue", 
-  main="Aceleração X Velocidade",
+  main="Aceleração X Velocidade\n F1",
   lwd=3,
   xlab="Velocidade (metros por segundos)",
   ylab="Aceleração (metros por segundos[quadrado])")
@@ -521,7 +525,7 @@ grid(col="red")
 # xlab é o título do eixo X
 # ylab é o título do eixo Y
 plot(dadosF1$tempoMedio, dadosF1$aceleracaoMedia, type="o", col="blue", 
-  main="Aceleração X Tempo",
+  main="Aceleração X Tempo\n F1",
   lwd=3,
   xlab="Tempo (segundos)",
   ylab="Aceleração (metros por segundos[quadrado])")
