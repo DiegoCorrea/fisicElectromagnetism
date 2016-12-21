@@ -620,7 +620,7 @@ loopMhs <- function(){
 graficoMhs <- function(){
   MHS <- loopMhs()
   Tempo <- variacaoDeTempo()
-  return(plot(Tempo,MHS, main = "Descolamento x Tempo", lwd=3, xlab="Tempo (segundos)", ylab="Deslocamento (metros)"))
+  return(plot(Tempo,MHS, main = "Descolamento x Tempo\nPêndulo variado", lwd=3, xlab="Tempo (segundos)", ylab="Deslocamento (metros)"))
 }
 
 ##### Cria uma imagem do gráfico MHS
@@ -650,7 +650,7 @@ graficoPeriodo <- function(){
     distancia[x] <- data[x,1]
   }
   Período <- loopPeriodo()
-  return(plot(distancia, Período, type = 'b', main = "Período x Distância", lwd=3, xlab="Distância", ylab="Período"))
+  return(plot(distancia, Período, type = 'b', main = "Período x Distância\nPêndulo variado", lwd=3, xlab="Distância (metros)", ylab="Período (segundos)"))
 }
 
 ##### Cria uma imagem do gráfico Periodo
@@ -681,7 +681,7 @@ loopVelocidade <-function(){
 
 ##### Cria o plot do gráfico Da Velocidade
 graficoVelocidade <- function(){
-  return(plot(variacaoDeTempo(),loopVelocidade(), main = "Velocidade x Tempo", lwd=3, xlab="Tempo (segundos)", ylab="Velocidade (metros)"))
+  return(plot(variacaoDeTempo(),loopVelocidade(), main = "Velocidade x Tempo\nPêndulo variado", lwd=3, xlab="Tempo (segundos)", ylab="Velocidade (metros por segundos)"))
 }
 
 ##### Cria uma imagem do gráfico da Velocidade
@@ -711,7 +711,7 @@ loopAceleracao <-function(){
 
 ##### Cria o plot do gráfico da Aceleração
 graficoAceleracao <- function(){
-  return(plot(variacaoDeTempo(),loopAceleracao(), main = "Aceleração x Tempo", lwd=3, xlab="Tempo (segundos²)", ylab="Aceleração (metros)"))
+  return(plot(variacaoDeTempo(),loopAceleracao(), main = "Aceleração x Tempo \nPêndulo variado", lwd=3, xlab="Tempo (segundos)", ylab="Aceleração (metros por segundos)"))
 }
 
 ##### Cria uma imagem do gráfico da Aceleração
@@ -722,53 +722,78 @@ printGraficoAceleracao <- function(){
 ```
 # Experimento 3 - Pêndulo tamanho variado
 
-Explicar como foi o experimento bla bla bla bla bla
+Neste experimento, medimos o comprimento do fio que segura o pêndulo e o tempo de oscilações do pêndulo. Em cada um 5 testes realizados aumentados em 0.2 metros o comprimento do fio, cronometramos o tempo em um período de 10 oscilações do pêndulo e utilizamos um ângulo de de afastamento da bola do pêndulo de sua posição de repouso de 10 graus.
 
-**Distâncias**
+## Dados Coletados
 
+Os dados coletados para os 5 testes foram:
+
+**Comprimentos do fio que segura o pêndulo**
 ```{r, echo=FALSE}
 print(data$h)
 ```
 
-**Tempo**
-
+**Tempos obtido no período de 10 oscilações**
 ```{r, echo=FALSE}
 print(data$t)
 ```
 
-**Xm**
-```{r, echo=FALSE}
-print(data$xm)
-```
+Dentre os dados obtidos escolheu-se o ultimo teste realizado, onde o comprimento do fio que segura o pêndulo tem tamanho de 1 metro e o tempo para o período de 10 oscilação de 19.11 segundos.  
+  
+A partir dos dados coletados nos testes, podemos calcular o descolamento do movimento harmônico simples. Para isto utilizou-se a seguinte equação x(t) = amplitude \* cos(frequência angular \* intervalo de tempo + constante de fase).  
+  
+A amplitude é obtida da equação A = comprimento do fio \* sen(ângulo).  
+  
+A frequência angular é obtida da seguinte equação frequência angular = 2\*pi\*f, onde é a frequência de oscilações do pêndulo, a frequência é obtida da equação f = número de ciclos/intervalo de tempo.  
+  
+A constante de fase para o experimento realizado teve um valor igual a 0.
 
-Assim obtemos os seguintes gráficos:
-
+Com estas informações calculamos a função de deslocamento para um intervalo de tempo de 0 a 100 e obteve-se o seguinte gráfico:  
+  
 ```{r, echo=FALSE}
 printGraficoMHS()
 ```
+  
+## Velocidade
+A partir dos dados coletados nos testes, podemos calcular a velocidade do movimento harmônico
 
-```{r, echo=FALSE}
-printGraficoPeriodo()
-```
-
+simples. Para isto utilizou-se a seguinte equação: v(t) = -frequência angular\*amplitude\*sen(frequência angular * intervalo de tempo + constante de fase).  
+  
+Com isto obtemos o seguinte gráfico da função velocidade calculada para um intervalo de tempo de 0 a 100 segundos.  
+  
 ```{r, echo=FALSE}
 printGraficoVelocidade()
 ```
-
+  
+## Aceleração
+A partir dos dados coletados nos testes, podemos calcular a aceleração do movimento harmônico simples. Para isto utilizou-se a seguinte equação a(t) = -frequência angular^2\*amplitude\*cos(frequência angular \* intervalo de tempo + constante de fase).  
+  
+Com isto obtemos o seguinte gráfico da função aceleração calculada para um intervalo de tempo de 0 a 100 segundos.  
+  
 ```{r, echo=FALSE}
 printGraficoAceleracao()
+```
+  
+## Período  
+  
+Com os dados obtidos, calculou-se também o período de oscilação de cada um dos 5 testes realizados. Para realizar o calculo do período utilizou a equação T = intervalo de tempo/número de ciclos.  
+
+Com isto obtemos o seguinte gráfico do período do movimento para cada um dos 5 testes realizados, calculados em função do tempo obtido no para o período de 10 oscilações em cada um dos 5 teste.  
+  
+```{r, echo=FALSE}
+printGraficoPeriodo()
 ```
 
 
 ```{r, echo=FALSE}
 periodo<-loopPeriodo()
 ##valores da distancia em metros na  variavel local
-distancia<- c(0.2,0.4,0.6,0.8,1.0)
+distancia<- data$h
 
 x<-distancia
 y<-periodo
 ## Gráfico linearizado
-plot(distancia,periodo, log="xy", type='o', main="Gráfico linearizado",lwd=3, xlab="Distancia", ylab="Periodo")
+plot(distancia,periodo, log="xy", col="blue",type='o', main="Gráfico linearizado \nPêndulo variado",lwd=3, xlab="Distância(metros)", ylab="Período(segundos)")
 grid(col="red")
 
 ## função para achar o coeficiente angular
@@ -777,12 +802,14 @@ line2<- function(x,y){
   b<-(log(x[5],base=10))-(log(x[4],base=10))
   coeficiente2<- a/b
 }
-
-##coeficiente angular do pêndulo variado
-print(line2(x,y))
 ```
 
 
+## Coeficiente Ângular
+```{r, echo=FALSE}
+##coeficiente angular do pêndulo variado
+print(line2(x,y))
+```
 
 
 
@@ -810,23 +837,16 @@ O experimento do pêndulo fixo foi realizado com um fio de barbante de comprimen
 ```{r, echo=FALSE, results='asis', eval=TRUE}
 pendulo2 <- read.csv(file = "pendulo_tamanho_fixo.csv", header=TRUE, sep=",")
 
-somatempo<-0
-
-Main<- function(tempo){
-  ## Calcula frequencia = Numero de oscilacoes dividido pelo tempo  
-  f<-10/tempo
-  cat("Frequencia :",f,"\n")
-  
-  ##Calcula o Periodo = 1 dividido pela frequencia 
-  periodo<-1/f
-  cat("Periodo :",periodo,"\n")
-  
-  ##Calcula o comprimento L = T²*g/4*pi²
-  L<-(((periodo)^2)*9.8)/(4*(pi)^2)
-  
-  cat("comprimento L:",L,"\n")
-  
+calcFrequencia <- function(tempo){
+  return(10/tempo)
 }
+calcPeriodo <- function(frequencia){
+  return(periodo<-1/frequencia)
+}
+calcComprimento <- function(periodo){
+  return((((periodo)^2)*9.8)/(4*(pi)^2))
+}
+somatempo<-0
 
 ## Loop para calcular a soma total do tempo dos 10 testes realizado   
   for (x in 1:10){
@@ -836,5 +856,30 @@ Main<- function(tempo){
 ## Calcula tempo medio dos 10 testes realizados
 tempomedio<-somatempo/10
 
-Main(tempomedio)
+frequencia <- calcFrequencia(tempomedio)
+periodo <- calcPeriodo(frequencia)
+comprimento <- calcComprimento(periodo)
 ```
+
+## Resultados
+
+Assim obtivemos os seguintes resultados:
+
+**Frequência**
+```{r, echo=FALSE}
+print(frequencia)
+```
+
+**Periodo**
+```{r, echo=FALSE}
+print(periodo)
+```
+
+**Comprimento**
+```{r, echo=FALSE}
+print(comprimento)
+```
+
+## Conclusão
+
+Com base nos dados obtidos e utilizando-se de um modelo matemático é possível determinar o Comprimento L a partir da relação com o período. 
